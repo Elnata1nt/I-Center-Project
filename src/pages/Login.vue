@@ -1,14 +1,16 @@
 <template>
     <div class="page">
-        <form method="POST" class="formLogin">
+        <form @submit.prevent="onLogin()" method="POST" class="formLogin">
             <h1>FAÇA SEU LOGIN</h1>
             <div class="form-group">
                 <label for="email">E-mail</label>
-                <input type="text" id="email" class="form-control" placeholder="E-mail" required />
+                <input type="text" id="email" class="form-control" placeholder="E-mail" v-model="email"  />
+                <div class="error" v-if="errors.email"> {{ errors.email }} </div>
             </div>
             <div class="form-group">
                 <label for="password">Senha</label>
-                <input type="password" id="password" class="form-control" placeholder="Senha" required />
+                <input type="password" id="password" class="form-control" placeholder="Senha" v-model="password"  />
+                <div class="error" v-if="errors.password"> {{ errors.password }} </div>
             </div>
             <div class="forgot-password">
                 <a href="#">Esqueci minha senha</a>
@@ -23,7 +25,34 @@
 
 
 <script>
-export default {};
+import SignupValidations from "../services/SignupValidations";
+
+export default {
+    data() {
+        return {
+            email: '',
+            password: '',
+            errors: [],
+        };
+    },
+
+methods: {
+    onLogin() {
+        let validations = new SignupValidations(
+            this.email,
+            this.password
+        )
+
+        this.errors = validations.checkValidations();
+        if ( this.errors.length) {
+            return false;
+        }
+
+        //signup registre
+
+    }
+  }
+}
 </script>
 
 
@@ -34,8 +63,6 @@ body {
     font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
-    color: #f7f8f9;
-    
 }
 
 .page {
@@ -71,7 +98,7 @@ body {
 .form-group input[type="password"] {
     width: 90%;
     padding: 10px;
-    margin: 5px 0 15px;
+    margin: 5px 0 5px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -109,6 +136,13 @@ a {
 a:hover {
     transform: scale(1.05);
     color: #d48b43;
+}
+.error {
+    display: inline-block;
+    font-size: 15px;
+    color: #cf0000;
+    display: inline; 
+    text-align: right; 
 }
 .btn-primary {
     padding: 10px 20px;
