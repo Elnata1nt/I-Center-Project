@@ -1,22 +1,26 @@
 <template>
-    <div class="page">
+    <div class="pageLogin">
         <form @submit.prevent="onLogin()" method="POST" class="formLogin">
             <h1>FAÇA SEU LOGIN</h1>
+
             <div class="form-group">
                 <label for="email">E-mail</label>
-                <input type="text" id="email" class="form-control" placeholder="E-mail" v-model="email"  />
+                <input type="text" id="email" class="form-control" placeholder="E-mail" v-model="email" />
                 <div class="error" v-if="errors.email"> {{ errors.email }} </div>
             </div>
+
             <div class="form-group">
                 <label for="password">Senha</label>
-                <input type="password" id="password" class="form-control" placeholder="Senha" v-model="password"  />
+                <input type="password" id="password" class="form-control" placeholder="Senha" v-model="password" />
                 <div class="error" v-if="errors.password"> {{ errors.password }} </div>
             </div>
+
+            <div class="my-3">
+                <button v-on:click="onClick()" type="submit" class="btn btn-primary">Login</button>
+            </div>
+
             <div class="forgot-password">
                 <a href="#">Esqueci minha senha</a>
-            </div>
-            <div class="my-3">
-                <button type="submit" class="btn btn-primary">Login</button>
             </div>
         </form>
     </div>
@@ -36,22 +40,24 @@ export default {
         };
     },
 
-methods: {
-    onLogin() {
-        let validations = new SignupValidations(
-            this.email,
-            this.password
-        )
+    methods: {
+        onLogin() {
+            let validations = new SignupValidations(
+                this.email,
+                this.password
+            )
 
-        this.errors = validations.checkValidations();
-        if ( this.errors.length) {
-            return false;
+            this.errors = validations.checkValidations();
+            if (this.errors.length) {
+                return false;
+            }
+
+            //signup registre
+        },
+        onClick(){
+            console.log('Click');
         }
-
-        //signup registre
-
     }
-  }
 }
 </script>
 
@@ -59,34 +65,72 @@ methods: {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-body {
-    font-family: 'Inter', sans-serif;
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-.page {
+/* Estilos globais */
+body {
+    font-family: 'Inter', sans-serif;
+    background-image: url('../src/img/backgroundLogin.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100vh;
+}
+
+/* Container principal da página de login */
+.pageLogin {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #477079;
 }
+
+/* Formulário de login */
 .formLogin {
     display: flex;
     flex-direction: column;
-    background-color: #fff;
+    background-color: #ffffff44;
+    box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.199);
     border-radius: 7px;
-    padding: 40px;
-    width: 300px;
-    box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
+    padding: 28px;
+    width: 30%;
+    margin: 0 auto;
+    margin-right: 10rem;
+}
+@media screen and (max-width: 730px) {
+    .formLogin {
+        width: 50%; /* Reduz a largura para 80% quando a tela for menor que 600px */
+
+    }
 }
 
+@media screen and (max-width: 520px) {
+    .formLogin {
+        width: 70%; /* Reduz a largura para 70% quando a tela for menor que 450px */
+        margin: 80px;
+
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .formLogin {
+        width: 80%; /* Reduz a largura para 70% quando a tela for menor que 450px */
+        margin: 50px;
+
+    }
+}
+
+
 .formLogin h1 {
-    color: rgb(57, 179, 220);
+    color: #439cd4;
     margin-bottom: 20px;
-    font-size: 24px;
+    font-size: 27px;
+    text-align: center;
+
 }
 
 .form-group {
@@ -94,26 +138,22 @@ body {
     flex-direction: column;
 }
 
+/* Estilos para inputs dentro de .form-group */
 .form-group input[type="text"],
 .form-group input[type="password"] {
-    width: 90%;
+    width: 100%;
     padding: 10px;
-    margin: 5px 0 5px;
-    font-size: 16px;
+    margin: 5px 0;
+    font-size: 18px;
+    font-weight: 300px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    /* transition: all linear 160ms; */
+    border-radius: 13px;
     outline: none;
 }
 
-.forgot-password {
-    display: inline; 
-    text-align: right; 
-}
-
 .my-3 {
-    width: 100%; 
-    text-align: center; 
+    width: 100%;
+    text-align: center;
 }
 
 
@@ -126,41 +166,55 @@ label {
     color: #131212;
 }
 
-a { 
+.forgot-password {
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+a {
     display: inline-block;
-    margin-bottom: 20px;
     font-size: 16px;
     color: #555;
     transition: all linear 160ms;
+    padding: 10px;
+    text-decoration: none;
+    text-align: center;
+    margin: 0 auto;
 }
+
 a:hover {
     transform: scale(1.05);
-    color: #d48b43;
+    color: rgb(132, 59, 150);
 }
+
+/* Estilos para Error */
 .error {
     display: inline-block;
     font-size: 15px;
     color: #cf0000;
-    display: inline; 
-    text-align: right; 
+    display: inline;
+    text-align: right;
+    padding: 10px;
 }
+
+/* Estilos para botão primário */
 .btn-primary {
-    padding: 10px 20px;
-    font-size: 0.9rem;
+    padding: 10px;
+    font-size: 18px;
     font-weight: 300;
     background-color: #0492de;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 13px;
     cursor: pointer;
     transition: all linear 160ms;
-    border: none !important;
-    margin: 0 !important;
+    width: 100%;
+    margin: 10px auto 0;
 }
 
 .btn-primary:hover {
-    transform: scale(1.05);
+    /* transform: scale(1.05); */
     background-color: #439cd4;
 }
-
 </style>
