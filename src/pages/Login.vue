@@ -1,4 +1,8 @@
 <template>
+     <div class="signup">
+        <router-link to="/signup" class="btn btn-secundary">Cadastro</router-link>
+     </div>
+
     <div class="pageLogin">
         <form @submit.prevent="onLogin()" method="POST" class="formLogin">
             <h1>FAÇA SEU LOGIN</h1>
@@ -84,6 +88,7 @@ body {
 
 /* Container principal da página de login */
 .pageLogin {
+    margin-top: -30px;
     display: flex;
     align-items: center;
     height: 100vh;
@@ -102,6 +107,18 @@ body {
     margin-right: 10rem;
 }
 @media screen and (max-width: 730px) {
+    .formLogin {
+        width: 50%; /* Reduz a largura para 80% quando a tela for menor que 600px */
+
+    }
+}
+@media screen and (max-width: 775px) {
+    .formLogin {
+        width: 50%; /* Reduz a largura para 80% quando a tela for menor que 600px */
+
+    }
+}
+@media screen and (max-width: 880px) {
     .formLogin {
         width: 50%; /* Reduz a largura para 80% quando a tela for menor que 600px */
 
@@ -216,5 +233,68 @@ a:hover {
 .btn-primary:hover {
     /* transform: scale(1.05); */
     background-color: #439cd4;
+}
+
+/* -------------------------------------------------------------------- */
+.signup {
+    width: 100%;
+    text-align:end;
+    margin-left: -20px;
+}
+.btn-secundary {
+    padding: 10px;
+    font-size: 18px;
+    background-color: #0492de;
+    color: #fff;
+    border: none;
+    border-radius: 13px;
+    cursor: pointer;
+    transition: all linear 160ms;
+    width: 10%;
+    margin: 10px auto 0;
+}
+.signup a {
+    color: #fffefe;
+}
+.btn-secundary:hover {
+    /* transform: scale(1.05); */
+    background-color: #439cd4;
+}
+@media screen and (max-width: 375px) {
+    .btn-secundary {
+        width: 30%; /* Reduz a largura para 80% quando a tela for menor que 600px */
+        margin-right: 30%;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .btn-secundary {
+        width: 30%; /* Reduz a largura para 80% quando a tela for menor que 600px */
+        margin-right: 30%;
+    }
+}
+@media screen and (max-width: 520px) {
+    .btn-secundary {
+        width: 30%; /* Reduz a largura para 80% quando a tela for menor que 600px */
+        margin-right: 30%;
+    }
+}
+@media screen and (max-width: 730px) {
+    .btn-secundary {
+        width: 30%; /* Reduz a largura para 80% quando a tela for menor que 600px */
+        margin-right: 30%;
+    }
+}
+@media screen and (max-width: 775px) {
+    .btn-secundary {
+        width: 30%; /* Reduz a largura para 80% quando a tela for menor que 600px */
+        margin-right: 30%;
+    }
+}
+@media screen and (max-width: 880px) {
+    .btn-secundary {
+        width: 20%; /* Reduz a largura para 80% quando a tela for menor que 600px */
+        margin-right: 30%;
+    }
 }
 </style>
