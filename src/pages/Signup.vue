@@ -2,7 +2,7 @@
     <div class="pageSignup">
         <form @submit.prevent="onSignup()" method="POST" class="formSignup">
 
-            <div>SignUp Page</div>
+            <h1>Criar uma conta</h1>
 
             <div class="form-signup">
             <label for="name">Name</label>
@@ -17,26 +17,6 @@
             <div class="form-signup">
                 <label for="address">Address</label>
                 <input type="text" id="address" class="form-control" placeholder="Address" v-model="address" />
-            </div>
-
-            <div class="form-signup">
-                <label for="bairro">District</label>
-                <input type="text" id="bairro" class="form-control" placeholder="District" v-model="district" />
-            </div>
-
-            <div class="form-signup">
-                <label for="cidade">City</label>
-                <input type="text" id="cidade" class="form-control" placeholder="City" v-model="city" />
-            </div>
-
-            <div class="form-signup">
-                <label for="estado">State</label>
-                <input type="text" id="estado" class="form-control" placeholder="State" v-model="state" />
-            </div>
-
-            <div class="form-signup">
-                <label for="uf">UF</label>
-                <input type="text" id="uf" class="form-control" placeholder="UF" v-model="uf" />
             </div>
 
             <div class="form-signup">
@@ -62,7 +42,7 @@
                 <input type="password" id="confirm_senha" class="form-control" placeholder="Confirm Password" v-model="confirmSenha" />
             </div>
 
-            <div class="form-signup">
+            <div class="my-signup">
                 <button v-on:click="onClick()" type="submit" class="btn btn-signup">Cadastrar</button>
             </div>
 
@@ -114,10 +94,20 @@ export default {
 
 <style>
 .pageSignup {
+    width: 100%;
+    margin: auto;
     display: flex;
-    align-items: center;
-    height: 100vh; 
-    background-color: rgb(45, 72, 228)
+    flex-direction: column; 
+    border-radius:3px; 
+    padding:1em;
+}
+.pageSignup h1 {
+    color: #ffffff;
+    margin-bottom: 2px;
+    border-bottom: 1px #f0eded solid;
+    padding-bottom: 10px;
+    font-size: 2.3em;
+    text-align: center;
 }
 .formSignup {
     box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.199);
@@ -126,15 +116,15 @@ export default {
     border-radius: 10px;
     margin: 0 auto;
     padding: 28px;
-    width: 30%;
+    width: 40%;
 }
 @media screen and (max-width: 730px) {
-    .formSignupn {
+    .formSignup {
         width: 50%; /* Reduz a largura para 80% quando a tela for menor que 600px */
     }
 }
 @media screen and (max-width: 775px) {
-    .fformSignup {
+    .formSignup {
         width: 50%; /* Reduz a largura para 80% quando a tela for menor que 600px */
     }
 }
@@ -146,14 +136,46 @@ export default {
 
 @media screen and (max-width: 520px) {
     .formSignup {
-        width: 70%; /* Reduz a largura para 70% quando a tela for menor que 450px */
+        width: 80%; /* Reduz a largura para 70% quando a tela for menor que 450px */
     }
 }
 
 @media screen and (max-width: 430px) {
     .formSignup {
-        width: 60%; /* Reduz a largura para 70% quando a tela for menor que 450px */
+        width: 50%; /* Reduz a largura para 70% quando a tela for menor que 450px */
     }
+}
+
+
+.form-signup {
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+}
+.form-signup input {
+    border: 1px solid #ccc;
+    border-radius: 13px;
+    outline: none;
+    font-size: 15px;
+    padding: 7px;
+    margin: 5px 0;
+    width: 100%;
+}
+.form-signup label {
+    color: #ffffff;
+    margin-bottom: -10px;
+}
+@media screen and (max-width: 430px) {
+    .formSignup{
+        width: 90%;
+    }
+    .form-signup {
+        width: 100%;
+    }
+}
+.my-signup {
+    width: 100%;
+    text-align: center;
 }
 
 </style>

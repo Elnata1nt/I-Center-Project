@@ -1,5 +1,8 @@
 <template>
      <div class="signup">
+        <div class="logoIcenter">
+        <img src="/public/logolo.svg" alt="">
+    </div>
         <router-link to="/signup" class="btn btn-secundary">Cadastro</router-link>
      </div>
 
@@ -88,10 +91,10 @@ body {
 
 /* Container principal da página de login */
 .pageLogin {
-    margin-top: -30px;
+    margin-top: 30px;
     display: flex;
     align-items: center;
-    height: 100vh;
+    height: 80vh;
 }
 
 /* Formulário de login */
@@ -106,28 +109,28 @@ body {
     margin: 0 auto;
     margin-right: 10rem;
 }
-@media screen and (max-width: 730px) {
-    .formLogin {
-        width: 50%; /* Reduz a largura para 80% quando a tela for menor que 600px */
-
-    }
-}
-@media screen and (max-width: 775px) {
-    .formLogin {
-        width: 50%; /* Reduz a largura para 80% quando a tela for menor que 600px */
-
-    }
-}
 @media screen and (max-width: 880px) {
     .formLogin {
-        width: 50%; /* Reduz a largura para 80% quando a tela for menor que 600px */
+        width: 50%; 
+
+    }
+}
+@media screen and (max-width: 750px) {
+    .formLogin {
+        width: 50%; 
+
+    }
+}
+@media screen and (max-width: 650px) {
+    .formLogin {
+        width: 50%; 
 
     }
 }
 
-@media screen and (max-width: 520px) {
+@media screen and (max-width: 550px) {
     .formLogin {
-        width: 70%; /* Reduz a largura para 70% quando a tela for menor que 450px */
+        width: 70%;
         margin: 80px;
 
     }
@@ -135,7 +138,7 @@ body {
 
 @media screen and (max-width: 450px) {
     .formLogin {
-        width: 80%; /* Reduz a largura para 70% quando a tela for menor que 450px */
+        width: 80%; 
         margin: 50px;
 
     }
@@ -237,9 +240,11 @@ a:hover {
 
 /* -------------------------------------------------------------------- */
 .signup {
+    display: flex; /* Adiciona um display flex ao container .signup */
+    justify-content: space-between; /* Distribui os elementos igualmente ao longo do eixo principal */
+    align-items: center; /* Centraliza verticalmente os elementos */
     width: 100%;
-    text-align:end;
-    margin-left: -20px;
+    margin-left: 20px;
 }
 .btn-secundary {
     padding: 10px;
@@ -250,8 +255,7 @@ a:hover {
     border-radius: 13px;
     cursor: pointer;
     transition: all linear 160ms;
-    width: 10%;
-    margin: 10px auto 0;
+    margin: 10px 60px 0 0;
 }
 .signup a {
     color: #fffefe;
@@ -260,23 +264,17 @@ a:hover {
     /* transform: scale(1.05); */
     background-color: #439cd4;
 }
-@media screen and (max-width: 375px) {
-    .btn-secundary {
+@media screen and (max-width: 520px) {
+    .btn.btn-secundary {
         width: 30%; /* Reduz a largura para 80% quando a tela for menor que 600px */
-        margin-right: 30%;
+        margin-right: 10%;
     }
 }
 
 @media screen and (max-width: 430px) {
-    .btn-secundary {
-        width: 30%; /* Reduz a largura para 80% quando a tela for menor que 600px */
-        margin-right: 30%;
-    }
-}
-@media screen and (max-width: 520px) {
-    .btn-secundary {
-        width: 30%; /* Reduz a largura para 80% quando a tela for menor que 600px */
-        margin-right: 30%;
+    .btn.btn-secundary {
+        width: 40%; /* Reduz a largura para 80% quando a tela for menor que 600px */
+        margin-right: 20%;
     }
 }
 @media screen and (max-width: 730px) {
@@ -296,5 +294,9 @@ a:hover {
         width: 20%; /* Reduz a largura para 80% quando a tela for menor que 600px */
         margin-right: 30%;
     }
+}
+.signup img {
+    margin-top: 10px;
+    width: 25%;
 }
 </style>
