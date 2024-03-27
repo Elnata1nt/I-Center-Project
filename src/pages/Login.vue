@@ -81,13 +81,15 @@ export default {
 /* Estilos globais */
 body {
     font-family: 'Inter', sans-serif;
-    background-image: url('../src/img/backgroundLogin.jpg');
+    background-color: #07324d;
+    /* background-image: url('../src/img/backgroundLogin.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    height: 100vh;
+    height: 100vh; */
 }
+
 
 /* Container principal da página de login */
 .pageLogin {
@@ -97,34 +99,29 @@ body {
     height: 80vh;
 }
 
-/* Formulário de login */
 .formLogin {
     display: flex;
     flex-direction: column;
     background-color: #ffffff44;
     box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.199);
-    border-radius: 7px;
+    border-radius: 10px;
     padding: 28px;
     width: 30%;
     margin: 0 auto;
     margin-right: 10rem;
 }
-@media screen and (max-width: 880px) {
-    .formLogin {
-        width: 50%; 
 
+@media screen and (max-width: 1024px) {
+    .formLogin {
+        width: 30%;
+        margin-top: -5%;
+        margin-right: 6%;
     }
 }
+
 @media screen and (max-width: 750px) {
     .formLogin {
-        width: 50%; 
-
-    }
-}
-@media screen and (max-width: 650px) {
-    .formLogin {
-        width: 50%; 
-
+        width: 50%;
     }
 }
 
@@ -132,25 +129,24 @@ body {
     .formLogin {
         width: 70%;
         margin: 80px;
-
     }
 }
 
 @media screen and (max-width: 450px) {
     .formLogin {
-        width: 80%; 
+        width: 80%;
         margin: 50px;
-
     }
 }
 
-
 .formLogin h1 {
-    color: #439cd4;
+    border-bottom: 1px #f0eded solid;
+    padding-bottom: 10px;
+    outline: none;
+    color: #ffffff;
     margin-bottom: 20px;
     font-size: 27px;
     text-align: center;
-
 }
 
 .form-group {
@@ -158,16 +154,15 @@ body {
     flex-direction: column;
 }
 
-/* Estilos para inputs dentro de .form-group */
 .form-group input[type="text"],
 .form-group input[type="password"] {
     width: 100%;
     padding: 10px;
     margin: 5px 0;
     font-size: 18px;
-    font-weight: 300px;
+    font-weight: 300;
     border: 1px solid #ccc;
-    border-radius: 13px;
+    border-radius: 7px;
     outline: none;
 }
 
@@ -176,14 +171,13 @@ body {
     text-align: center;
 }
 
-
 label {
     font-size: 17px;
     font-weight: 600;
     padding: 10px;
     border-radius: 4px;
     cursor: pointer;
-    color: #131212;
+    color: #ffffff;
 }
 
 .forgot-password {
@@ -195,7 +189,7 @@ label {
 a {
     display: inline-block;
     font-size: 16px;
-    color: #555;
+    color: #ffffff;
     transition: all linear 160ms;
     padding: 10px;
     text-decoration: none;
@@ -205,28 +199,28 @@ a {
 
 a:hover {
     transform: scale(1.05);
-    color: rgb(132, 59, 150);
+    color: #0492de;
 }
 
-/* Estilos para Error */
 .error {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
     display: inline-block;
-    font-size: 15px;
-    color: #cf0000;
-    display: inline;
+    font-size: 17px;
+    color:rgb(247, 37, 0);
     text-align: right;
-    padding: 10px;
+    margin-right: 8px;
 }
 
-/* Estilos para botão primário */
 .btn-primary {
     padding: 10px;
     font-size: 18px;
     font-weight: 300;
     background-color: #0492de;
+    box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.199);
     color: #fff;
     border: none;
-    border-radius: 13px;
+    border-radius: 7px;
     cursor: pointer;
     transition: all linear 160ms;
     width: 100%;
@@ -234,22 +228,22 @@ a:hover {
 }
 
 .btn-primary:hover {
-    /* transform: scale(1.05); */
     background-color: #439cd4;
 }
 
-/* -------------------------------------------------------------------- */
 .signup {
-    display: flex; /* Adiciona um display flex ao container .signup */
-    justify-content: space-between; /* Distribui os elementos igualmente ao longo do eixo principal */
-    align-items: center; /* Centraliza verticalmente os elementos */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
     margin-left: 20px;
 }
+
 .btn-secundary {
     padding: 10px;
     font-size: 18px;
     background-color: #0492de;
+    box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.199);
     color: #fff;
     border: none;
     border-radius: 13px;
@@ -257,46 +251,52 @@ a:hover {
     transition: all linear 160ms;
     margin: 10px 60px 0 0;
 }
+
 .signup a {
     color: #fffefe;
 }
+
 .btn-secundary:hover {
-    /* transform: scale(1.05); */
     background-color: #439cd4;
 }
+
 @media screen and (max-width: 520px) {
     .btn.btn-secundary {
-        width: 30%; /* Reduz a largura para 80% quando a tela for menor que 600px */
+        width: 40%;
         margin-right: 10%;
     }
 }
 
 @media screen and (max-width: 430px) {
     .btn.btn-secundary {
-        width: 40%; /* Reduz a largura para 80% quando a tela for menor que 600px */
-        margin-right: 20%;
+        width: 30%;
     }
 }
-@media screen and (max-width: 730px) {
+
+@media screen and (max-width: 1024px) {
     .btn-secundary {
-        width: 30%; /* Reduz a largura para 80% quando a tela for menor que 600px */
-        margin-right: 30%;
+        width: 10%;
+        margin-right: 5%;
     }
 }
+
 @media screen and (max-width: 775px) {
     .btn-secundary {
-        width: 30%; /* Reduz a largura para 80% quando a tela for menor que 600px */
+        width: 30%;
         margin-right: 30%;
     }
 }
+
 @media screen and (max-width: 880px) {
     .btn-secundary {
-        width: 20%; /* Reduz a largura para 80% quando a tela for menor que 600px */
+        width: 20%;
         margin-right: 30%;
     }
 }
+
 .signup img {
     margin-top: 10px;
     width: 25%;
 }
+
 </style>

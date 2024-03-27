@@ -4,46 +4,106 @@
 
             <h1>Criar uma conta</h1>
 
-            <div class="form-signup">
-            <label for="name">Name</label>
-                <input type="text" id="name" class="form-control" placeholder="Name" v-model="name" />
+            <!-- Select type of account -->
+            <div class="form-cont">
+                <input type="radio" id="client" name="accountType" v-model="accountType" value="client">
+                <label for="client">Cliente</label><br>
+                <input type="radio" id="company" name="accountType" v-model="accountType" value="company">
+                <label for="company">Empresa</label>
             </div>
 
-            <div class="form-signup">
-                <label for="cpf_cnpj">CPF/CNPJ</label>
-                <input type="text" id="cpf_cnpj" class="form-control" placeholder="CPF/CNPJ" v-model="cpf_cnpj" />
+            <!-- Fields for Client/Personal Account -->
+            <div v-if="accountType === 'client'">
+                <div class="form-signup">
+                    <label for="name">Nome</label>
+                    <input type="text" id="name" class="form-control" placeholder="Nome" v-model="name" />
+                </div>
+
+                <div class="form-signup">
+                    <label for="lastname">Sobrenome</label>
+                    <input type="text" id="lastname" class="form-control" placeholder="Sobrenome" v-model="lastname" />
+                </div>
+
+                <div class="form-signup">
+                    <label for="email">E-mail</label>
+                    <input type="text" id="email" class="form-control" placeholder="E-mail" v-model="email" />
+                    <div class="error" v-if="errors.email"> {{ errors.email }} </div>
+                </div>
+
+                <div class="form-signup">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" class="form-control" placeholder="Senha" v-model="password" />
+                    <div class="error" v-if="errors.password"> {{ errors.password }} </div>
+                </div>
+
+                <div class="form-signup">
+                    <label for="confirmPassword">Confirmar Senha</label>
+                    <input type="password" id="confirmPassword" class="form-control" placeholder="Confirmar Senha"
+                        v-model="confirmPassword" />
+                    <div class="error" v-if="errors.confirmPassword"> {{ errors.confirmPassword }} </div>
+                </div>
             </div>
 
-            <div class="form-signup">
-                <label for="address">Address</label>
-                <input type="text" id="address" class="form-control" placeholder="Address" v-model="address" />
-            </div>
+            <!-- Fields for Company/Professional Account -->
+            <div v-if="accountType === 'company'">
+                <div class="form-signup">
+                    <label for="companyName">Nome da Empresa</label>
+                    <input type="text" id="companyName" class="form-control" placeholder="Nome da Empresa"
+                        v-model="companyName" />
+                </div>
 
-            <div class="form-signup">
-                <label for="tel">Phone</label>
-                <input type="text" id="tel" class="form-control" placeholder="Phone" v-model="tel" />
-            </div>
+                <div class="form-signup">
+                    <label for="cnpj">CNPJ</label>
+                    <input type="text" id="cnpj" class="form-control" placeholder="CNPJ" v-model="cnpj" />
+                </div>
 
-            <div class="form-signup">
-                <label for="email">E-mail</label>
-                <input type="text" id="email" class="form-control" placeholder="E-mail" v-model="email" />
-                <div class="error" v-if="errors.email"> {{ errors.email }} </div>
-            </div>
+                <div class="form-signup">
+                    <label for="companyEmail">E-mail Comercial</label>
+                    <input type="text" id="companyEmail" class="form-control" placeholder="E-mail Comercial"
+                        v-model="companyEmail" />
+                    <div class="error" v-if="errors.companyEmail"> {{ errors.companyEmail }} </div>
+                </div>
 
-            <div class="form-signup">
-                <label for="password">Senha</label>
-                <input type="password" id="password" class="form-control" placeholder="Senha" v-model="password" />
-                <div class="error" v-if="errors.password"> {{ errors.password }} </div>
-            </div>
+                <div class="form-signup">
+                    <label for="companyPassword">Senha</label>
+                    <input type="password" id="companyPassword" class="form-control" placeholder="Senha"
+                        v-model="companyPassword" />
+                    <div class="error" v-if="errors.companyPassword"> {{ errors.companyPassword }} </div>
+                </div>
 
+                <div class="form-signup">
+                    <label for="companyConfirmPassword">Confirmar Senha</label>
+                    <input type="password" id="companyConfirmPassword" class="form-control"
+                        placeholder="Confirmar Senha" v-model="companyConfirmPassword" />
+                    <div class="error" v-if="errors.companyConfirmPasswordd"> {{ errors.companyConfirmPassword }} </div>
+                </div>
 
-            <div class="form-signup">
-                <label for="confirm_senha">Confirm Password</label>
-                <input type="password" id="confirm_senha" class="form-control" placeholder="Confirm Password" v-model="confirmSenha" />
+                <!-- Address Fields -->
+                <div class="form-signup">
+                    <label for="street">Rua</label>
+                    <input type="text" id="street" class="form-control" placeholder="Rua" v-model="street" />
+                </div>
+
+                <div class="form-signup">
+                    <label for="streetNumber">Número da residência</label>
+                    <input type="text" id="streetNumber" class="form-control" placeholder="Número"
+                        v-model="streetNumber" />
+                </div>
+
+                <div class="form-signup">
+                    <label for="neighborhood">Bairro</label>
+                    <input type="text" id="neighborhood" class="form-control" placeholder="Bairro"
+                        v-model="neighborhood" />
+                </div>
+
+                <div class="form-signup">
+                    <label for="cep">CEP</label>
+                    <input type="text" id="cep" class="form-control" placeholder="CEP" v-model="cep" />
+                </div>
             </div>
 
             <div class="my-signup">
-                <button v-on:click="onClick()" type="submit" class="btn btn-signup">Cadastrar</button>
+                <button type="submit" class="btn btn-signup">Cadastrar</button>
             </div>
 
             <!-- Display errors if any -->
@@ -58,21 +118,30 @@
 
 <script>
 import SignupValidations from "../services/SignupValidations";
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default {
     data() {
         return {
+            accountType: 'client', // Default to client
+            // Client/Personal Account fields
             name: '',
-            cpf_cnpj: '',
-            address: '',
-            district: '',
-            city: '',
-            state: '',
-            uf: '',
-            tel: '',
-            senha: '',
-            confirmSenha: '',
-            errors: [],
+            lastname: '',
+            email: '',
+            password: '',
+            confirmPassword: '',
+            // Company/Professional Account fields
+            companyName: '',
+            cnpj: '',
+            companyEmail: '',
+            companyPassword: '',
+            companyConfirmPassword: '',
+            // Address fields
+            street: '',
+            streetNumber: '',
+            neighborhood: '',
+            cep: '',
+            errors: []
         }
     },
 
@@ -80,27 +149,54 @@ export default {
         onSignup() {
             let validations = new SignupValidations(
                 this.email,
-                this.password
+                this.companyEmail,
+                this.password,
+                this.confirmPassword,
+                this.companyPassword,
+                this.companyConfirmPassword
             );
 
             this.errors = validations.checkValidations();
-            if (this.errors.length) {
+
+            // Verifica se há erros
+            if (Object.keys(this.errors).length > 0) {
                 return false;
             }
+
+            // Outras validações específicas do cliente
+            if (this.accountType === 'client') {
+                if (!this.name || !this.lastname || !this.email || !this.password || !this.confirmPassword) {
+                    this.errors['client'] = "Por favor, preencha todos os campos.";
+                }
+            }
+            // Outras validações específicas da empresa
+            else if (this.accountType === 'company') {
+                if (!this.companyName || !this.cnpj || !this.companyEmail || !this.companyPassword || !this.companyConfirmPassword || !this.street || !this.streetNumber || !this.neighborhood || !this.cep) {
+                    this.errors['company'] = "Por favor, preencha todos os campos."; // Adicionado um identificador de erro 'company'
+                }
+            }
+
+            if (Object.keys(this.errors).length === 0) {
+                this.sendFormDataToServer(); // Função para enviar dados para o servidor
+            }
         },
+
+        sendFormDataToServer() {
+            // Lógica para enviar os dados do formulário para o servidor
+            console.log('Enviando dados do formulário para o servidor...');
+        }
+
     }
 }
 </script>
 
 <style>
 .pageSignup {
-    width: 100%;
-    margin: auto;
     display: flex;
-    flex-direction: column; 
-    border-radius:3px; 
-    padding:1em;
+    align-items: center;
+    width: 100%;
 }
+
 .pageSignup h1 {
     color: #ffffff;
     margin-bottom: 2px;
@@ -109,73 +205,80 @@ export default {
     font-size: 2.3em;
     text-align: center;
 }
+
 .formSignup {
-    box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.199);
+    display: flex;
+    flex-direction: column;
     background-color: #ffffff44;
-    flex-direction:column;
+    box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.199);
     border-radius: 10px;
-    margin: 0 auto;
     padding: 28px;
     width: 40%;
+    margin: 60px auto;
+    margin-right: 7rem;
+    margin-top: 5rem;
 }
-@media screen and (max-width: 730px) {
+@media screen and (max-width: 1024px) {
     .formSignup {
-        width: 50%; /* Reduz a largura para 80% quando a tela for menor que 600px */
-    }
-}
-@media screen and (max-width: 775px) {
-    .formSignup {
-        width: 50%; /* Reduz a largura para 80% quando a tela for menor que 600px */
-    }
-}
-@media screen and (max-width: 880px) {
-    .formSignup {
-        width: 50%; /* Reduz a largura para 80% quando a tela for menor que 600px */
+        width: 60%;
+        margin-right: 6%;
     }
 }
 
-@media screen and (max-width: 520px) {
+@media screen and (max-width: 750px) {
     .formSignup {
-        width: 80%; /* Reduz a largura para 70% quando a tela for menor que 450px */
+        width: 80%;
+        margin-right: 10%;
+        margin-top: 5rem;
     }
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 550px) {
     .formSignup {
-        width: 50%; /* Reduz a largura para 70% quando a tela for menor que 450px */
+        width: 70%;
+        margin: 80px;
     }
 }
 
+@media screen and (max-width: 450px) {
+    .formSignup {
+        width: 80%;
+        margin: 50px;
+    }
+}
+
+.form-cont {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+}
+
+.form-cont label {
+    color: rgb(254, 254, 254);
+}
 
 .form-signup {
     margin: 10px 0;
     display: flex;
     flex-direction: column;
 }
+
 .form-signup input {
     border: 1px solid #ccc;
-    border-radius: 13px;
+    border-radius: 7px;
     outline: none;
     font-size: 15px;
     padding: 7px;
     margin: 5px 0;
     width: 100%;
 }
+
 .form-signup label {
     color: #ffffff;
     margin-bottom: -10px;
 }
-@media screen and (max-width: 430px) {
-    .formSignup{
-        width: 90%;
-    }
-    .form-signup {
-        width: 100%;
-    }
-}
+
 .my-signup {
-    width: 100%;
     text-align: center;
 }
-
 </style>

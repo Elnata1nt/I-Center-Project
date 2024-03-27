@@ -1,4 +1,3 @@
-
 /*
 [X]Esta class está fornecendo funções de validação comuns para entradas de formulário.
 
@@ -7,17 +6,20 @@ minLength: Verifica se o comprimento de uma entrada fornecida é maior ou igual 
 */
 
 export default class Validations {
-    static checkEmail(email) {
-        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-            return true;
-        }
-        return false;
+  static checkEmail(email, companyEmail) {
+    if (
+      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email, companyEmail)
+    ) {
+      return emailRegex.test(email) && email === companyEmail;
+      // return true;
     }
+    return false;
+  }
 
-    static minLength(name, minLength) {
-        if (name.length < minLength) {
-            return false;
-        }
-        return true;
+  static minLength(name, minLength) {
+    if (name.length < minLength) {
+      return false;
     }
+    return true;
+  }
 }
